@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Management Service</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        /* Navigation Bar */
+nav {
+    position: relative; /* Changed from fixed to relative */
+    width: 100%;
+    background: rgba(6, 5, 5, 0.8);
+    padding: 10px 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Reduce logo size */
+nav .logo {
+    margin-left: 20px;
+}
+
+nav .logo img {
+    height: 60px; /* Reduce logo height */
+}
+
+/* Navigation Menu */
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-right: 20px;
+}
+
+nav ul li {
+    margin: 0 10px; /* Reduce space between menu items */
+}
+
+nav ul li a {
+    color: rgb(246, 243, 243);
+    text-decoration: none;
+    font-size: 16px; /* Reduce font size */
+}
+
+/* Remove extra spacing */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Remove unnecessary padding and margin from the body */
+body {
+    margin-top: 0; /* Ensure no space is added on top */
+    padding-top: 0;
+}
+        /* Home Section */
+        #home {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: rgb(255, 252, 252);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        .slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        .slider img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slider img.active {
+            opacity: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .services {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .service-box {
+            background-color: #967ce4;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+        }
+        .service-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .service-box p {
+            font-size: 1rem;
+        }
+
+        /* Button */
+        .btn {
+            background-color: #ec1d1d;
+            border: none;
+            padding: 10px 20px;
+            color: rgb(18, 3, 3);
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn:hover {
+            background-color: #fe7f7f;
+        }
+        
+        /* Footer */
+        .contact-button {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            background-color: #25D366;
+            color: rgb(249, 249, 249);
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 24px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+          /*contact us*/
+        .contact-header {
+    background-color: #f8a9a0; /* Pink Background */
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left, .right {
+    flex: 1;
+}
+
+.left h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(250, 244, 244);
+}
+
+.left p {
+    font-size: 16px;
+    color: white;
+}
+
+.contact-btn {
+    background-color: white;
+    color: #f8a9a0;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.right h3 {
+    font-size: 18px;
+    color: white;
+}
+
+.right p {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Services Section */
+.services {
+    text-align: center;
+    background-color: #fdf9f6;
+    padding: 50px 0;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.title::after {
+    content: " ";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #ff6b6b;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* Service Container */
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 boxes per row */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Individual Service Box */
+.service-box {
+    background: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-box img {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+}
+
+.service-box h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.service-box p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .service-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .service-container {
+        grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
+    }
+}
+
+/* Our Services Section */
+#services {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fff;
+}
+
+/* Section Title */
+#services h2 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 30px;
+}
+
+/* Service Box Container */
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* "Our Services" Boxes */
+#services .service-box {
+    background: #ffb6b6; /* Light Pink */
+    padding: 20px;
+    width: 220px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+#services .service-box:hover {
+    transform: scale(1.05);
+}
+
+/* "Our Services" Title */
+#services .service-box h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* "Our Services" Count */
+#services .service-box p {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* ---- HMH Event Services ---- */
+#hmh-services .service-box {
+    background: none !important; /* No background color */
+    width: 180px; /* Medium box size */
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .services {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    #services .service-box {
+        width: 180px;
+    }
+
+    #hmh-services .service-box {
+        width: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .services {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #services .service-box {
+        width: 80%;
+    }
+
+    #hmh-services .service-box {
+        width: 70%;
+    }
+}
+
+.button {
+    background-color: transparent; /* Transparent background */
+    color: white; /* Text color */
+    border: 2px solid white; /* White border */
+    padding: 10px 20px; /* Medium padding */
+    font-size: 16px; /* Medium font size */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin: 10px; /* Adds space between buttons */
+}
+
+.button:hover {
+    background-color: white; /* White background on hover */
+    color: black; /* Black text on hover */
+}
+
+/* Space between login and signup */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 500px; /* Adjust the space between login and signup */
+}
+
+/* Space below login */
+.login-container {
+    padding-bottom: 30px; /* Adjust as needed */
+}
+
+/* Space above signup */
+.signup-container {
+    padding-top: 30px; /* Adjust as needed */
+}
+
+.no-underline {
+    text-decoration: none; /* Removes underline */
+    color: white; /* Changes text color to white */
+}
+a {
+    text-decoration: none; /* Removes underline */
+}
+.about-link {
+    text-decoration: none; /* Removes underline */
+    color: white; /* Sets text color to white */
+    font-weight: medium; /* Optional: Makes it bold */
+}
+
+.nav-menu a {
+    margin-right: 18px; /* Adjust as needed */
+}
+
+.shop-link {
+    margin-right: 20px; /* Creates space before "Reach Us" */
+}
+
+
+
+.gallery-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+}
+
+.gallery {
+    display: flex;
+    gap: 20px; /* Space between images */
+    width: max-content;
+    animation: slide 300s linear infinite; /* Slower and smoother */
+}
+
+.gallery img {
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Continuous sliding effect */
+@keyframes slide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+
+
+
+
+.blog-section {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #fafafa;
+}
+
+.blog-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #111;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 40px;
+}
+
+.blog-title::after {
+    content: " ";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: #ff758c;
+    margin: 8px auto;
+}
+
+.blog-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    text-align: left;
+}
+
+.blog-images {
+    display: flex;
+    gap: 10px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.blog-images img {
+    width: 50%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.category {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 5px 15px;
+    background-color: #ff758c;
+    color: white;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.blog-heading {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.blog-text {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+.blog-images img {
+    width: 100%; /* Make the image take full width of the container */
+    height: 220px; /* Increase height to make it bigger */
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+    border-radius: 12px; /* Keep rounded corners */
+}
+
+
+
+
+/* Footer Container */
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #f8d7da;
+    padding: 40px 20px;
+    color: #444;
+}
+
+/* Footer Sections */
+.footer-section {
+    width: 250px;
+    text-align: left;
+}
+
+.footer-section h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 8px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #444;
+}
+
+.footer-section ul li a:hover {
+    color: #000;
+}
+
+/* Social Media Icons */
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #444;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #000;
+}
+
+/* Google Map */
+.footer-section iframe {
+    width: 100%;
+    border-radius: 5px;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    background-color: #f8d7da;
+    color: #444;
+}
+
+
+.shop-now {
+    color: white !important;  /* Makes "Shop Now" text white */
+}
+
+.shop-now {
+    margin-right: 20px; /* Adjust space between Shop Now and Reach Us */
+}
+nav ul li {
+    display: inline-block;
+    margin-right: 20px; /* Space between menu items */
+}
+
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Event Management Logo">
+        </div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <a href="About us.html" class="about-link">About Us</a>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <a href="shopping.html" class="shop-now">Shop Now</a>
+            <a href="Reach us.html" class="no-underline">Reach Us</a>
+            
+
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="slider">
+            <img src="front4.jpg" class="active" alt="Slide 1">
+            <img src="home4.jpg" alt="Slide 2">
+            <img src="home4.jpg" alt="Slide 3">
+            <img src="c:\Users\harin\Downloads\home2.jpg" alt="Slide 4">
+            <img src="c:\Users\harin\Downloads\home7.jpg" alt="Slide 5">
+            <img src="c:\Users\harin\Downloads\home3.jpg" alt="Slide 6">
+            <img src="c:\Users\harin\Downloads\home4.jpg" alt="Slide 7">
+            <img src="home8.jpg" alt="Slide 8">
+            
+            <!-- Add more images as needed -->
+        </div>
+        
+        <div class="content">
+            <h1>Welcome to Our Event Management Services</h1>
+            <p>Your one-stop solution for all events</p>
+            <button class="btn" onclick="location.href='#services'">Explore Services</button>
+        </div>
+        <div class="dots"></div>
+    </section>
+
+
+
+<section class="services">
+    <h2 class="title">HMH Events Services</h2>
+    <div class="service-container">
+        <!-- Entertainment -->
+        <div class="service-box">
+            <img src="entertinement.png" alt="Entertainment">
+            <h3>Entertainment</h3>
+            <p>Entertainment is the heart of any event. We ensure a fun and lively experience for all attendees.</p>
+        </div>
+
+        <!-- Events -->
+        <div class="service-box">
+            <img src="event.png" alt="Events">
+            <h3>Events</h3>
+            <p>From corporate gatherings to personal celebrations, we make your events seamless and memorable.</p>
+        </div>
+
+        <!-- Wedding Venues -->
+        <div class="service-box">
+            <img src="wedding.png" alt="Wedding Venues">
+            <h3>Wedding Venues</h3>
+            <p>Elegant and beautiful venues to make your wedding a dream come true.</p>
+        </div>
+
+        <!-- Hospitality -->
+        <div class="service-box">
+            <img src="hospitality.png" alt="Hospitality">
+            <h3>Hospitality</h3>
+            <p>Stress-free travel and accommodation arrangements for guests and hosts.</p>
+        </div>
+
+        <!-- Choreographers -->
+        <div class="service-box">
+            <img src="choreo.png" alt="Choreographers">
+            <h3>Choreographers</h3>
+            <p>Professional dance choreographers to add energy and grace to your event.</p>
+        </div>
+
+        <!-- Singers -->
+        <div class="service-box">
+            <img src="singers.png" alt="Singers">
+            <h3>Singers</h3>
+            <p>Live performances by talented singers to set the perfect mood.</p>
+        </div>
+
+        <!-- Anchors -->
+        <div class="service-box">
+            <img src="anchors.png" alt="Anchors">
+            <h3>Anchors</h3>
+            <p>Engaging and dynamic anchors to keep your event interactive and lively.</p>
+        </div>
+
+        <!-- International Artists -->
+        <div class="service-box">
+            <img src="artists.png" alt="International Artists">
+            <h3>International Artists</h3>
+            <p>Book world-class artists to bring global entertainment to your event.</p>
+        </div>
+
+        <!-- Catering -->
+        <div class="service-box">
+            <img src="catring.png" alt="Catering">
+            <h3>Catering</h3>
+            <p>Delicious multi-cuisine catering to satisfy every guest's taste buds.</p>
+        </div>
+
+        <!-- Decorations -->
+        <div class="service-box">
+            <img src="decor.png" alt="Decorations">
+            <h3>Decorations</h3>
+            <p>Custom-themed decorations to make your event visually stunning.</p>
+        </div>
+    </div>
+</section>
+    
+
+<section class="blog-section">
+    <h2 class="blog-title">Our Blog</h2>
+    <div class="blog-container">
+        <div class="blog-card">
+            <div class="blog-images">
+                <img src="shopping images/venue1.jpg" alt="Wedding Decor">
+                <img src="shopping images/venue6.jpg" alt="Wedding Venue">
+            </div>
+            <span class="category">Destination Wedding</span>
+            <h3 class="blog-heading">The Best Hotels & Resorts For Destination Wedding In Goa</h3>
+            <p class="blog-text">
+                Imagine it’s your wedding day. What you see now—an awe-inspiring Entry, 
+                a fancied-isolated venue, and your closed ones by your side, enjoying their 
+                heart out. Well, You could not agree more that everyone wants it to be a 
+                Grand one...
+            </p>
+        </div>
+
+        <div class="blog-card">
+            <div class="blog-images">
+                <img src="shopping images/venue2.jpg" alt="Floral Wedding Decor">
+                <img src="shopping images/venue7.jpg" alt="Beach Wedding">
+            </div>
+            <span class="category">Destination Wedding</span>
+            <h3 class="blog-heading">Unique Places For Destination Wedding In India</h3>
+            <p class="blog-text">
+                Finalized the dates, shortlisted your guests, chosen the matching colors to 
+                wear…what else now? Where to make it all happen. So, as soon as you find 
+                the right one to spend your life with, you definitely wish to make your special...
+            </p>
+        </div>
+    </div>
+</section>
+
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services">
+            <div class="service-box">
+                <h3>Experiences</h3>
+                <p>20+</p>
+            </div>
+            <div class="service-box">
+                <h3>Corporate Events</h3>
+                <p>300+</p>
+            </div>
+            <div class="service-box">
+                <h3>Wedding</h3>
+                <p>400+</p>
+            </div>
+            <div class="service-box">
+                <h3>Musical Concerts</h3>
+                <p>200+</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 style="text-align: center; font-size: 2rem; font-weight: bold; margin: 20px 0;">
+            Our Photo Gallery
+        </h2>
+        <p style="text-align: center; font-size: 1.2rem;">Explore our past events and decorations through our stunning gallery.</p>    
+        <div class="gallery-container">
+            <div class="gallery">
+                <img src="c:\Users\harin\Downloads\gallery.jpg" alt="Image 1">
+                <img src="c:\Users\harin\Downloads\gallery2.jpg" alt="Image 2">
+                <img src="c:\Users\harin\Downloads\gallery3.jpg" alt="Image 3">
+                <img src="c:\Users\harin\Downloads\gallery4.jpg" alt="Image 4">
+                <img src="c:\Users\harin\Downloads\gallery5.jpg" alt="Image 5">
+                <img src="c:\Users\harin\Downloads\gallery6.jpg" alt="Image 6">
+                <img src="c:\Users\harin\Downloads\galllery7.jpg" alt="Image 7">
+                <img src="c:\Users\harin\Downloads\gallery8.jpg" alt="Image 8">
+                <img src="c:\Users\harin\Downloads\gallery9.jpg" alt="Image 9">
+                <img src="c:\Users\harin\Downloads\gallery11.jpg" alt="Image 10">
+
+                <img src="c:\Users\harin\Downloads\gallery.jpg" alt="Image 1">
+                <img src="c:\Users\harin\Downloads\gallery2.jpg" alt="Image 2">
+                <img src="c:\Users\harin\Downloads\gallery3.jpg" alt="Image 3">
+                <img src="c:\Users\harin\Downloads\gallery4.jpg" alt="Image 4">
+                <img src="c:\Users\harin\Downloads\gallery5.jpg" alt="Image 5">
+                <img src="c:\Users\harin\Downloads\gallery6.jpg" alt="Image 6">
+                <img src="c:\Users\harin\Downloads\galllery7.jpg" alt="Image 7">
+                <img src="c:\Users\harin\Downloads\gallery8.jpg" alt="Image 8">
+                <img src="c:\Users\harin\Downloads\gallery9.jpg" alt="Image 9">
+                <img src="c:\Users\harin\Downloads\gallery11.jpg" alt="Image 10">
+            </div>
+        </div>
+        <p>
+            Step into our world of celebrations and elegance! Our gallery showcases breathtaking moments from weddings, engagements, birthdays, and traditional events, each beautifully crafted with unique themes and exquisite decor.
+        </p>
+        <p>
+            From vibrant Haldi and Mehendi setups to grand wedding stage decorations, every picture reflects our commitment to perfection. Witness how we bring dreams to life with mesmerizing floral arrangements, stylish backdrops, and stunning lighting effects.
+        </p>
+        <p>
+            Explore our past events and get inspired for your next big occasion! 🌟
+        </p>    
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>For bookings and inquiries, reach out to us through our contact page.</p>
+    </section>
+    <footer>
+        <div class="footer-container">
+            <!-- Company Description -->
+            <div class="footer-section">
+                <h2>HMH EVENTS & WEDDINGS</h2>
+                <p>We plan your dream destination events and weddings. From vibrant Haldi setups to grand wedding stage decorations, every picture reflects our commitment to perfection.</p>
+            </div>
+    
+            <!-- Useful Links -->
+            <div class="footer-section">
+                <h2>Useful Links</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="reachus.html">Reach Us</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Details -->
+            <div class="footer-section">
+                <h2>Contact Us</h2>
+                <p>📍 Goa, India</p>
+                <p>📧 Email: info@hmhevents.com</p>
+                <p>📞 Call: +91 8506000001</p>
+    
+                <!-- Social Media Icons -->
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+    
+            <!-- Google Map -->
+            <div class="footer-section">
+                <h2>Map Location</h2>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3898.189211476792!2d73.81800097479512!3d15.500000000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfb1e5e2f6f5b1%3A0xd5f65f8d99d52b89!2sGoa!5e0!3m2!1sen!2sin!4v1615821921571!5m2!1sen!2sin" 
+                    width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>Copyright © 2025 HMH EVENTS & ENTERTAINMENTS PVT.LTD | Privacy Policy</p>
+            <link rel="stylesheet" href="styles.css">
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+<a href="Reach us.html">
+    <button class="contact-btn">Contact Us</button>
+</a>
+
+        </div>
+    </footer>
+    
+    </section>
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/91911300002" class="contact-button" target="_blank">📞</a>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+        // Home Page Image Slider
+        let index = 0;
+        const slides = document.querySelectorAll('.slider img');
+        function cycleImages() {
+            slides.forEach((img, i) => {
+                img.classList.remove('active');
+            });
+            slides[index].classList.add('active');
+            index = (index + 1) % slides.length;
+        }
+        setInterval(cycleImages, 6000); // Change image every 6 seconds
+
+    const galleryContainer = document.querySelector(".gallery-container");
+    let scrollAmount = 0;
+    const scrollStep = 260; // Approximate image width + gap
+    const scrollSpeed = 10000; // 3 seconds
+    let scrollDirection = 1; // 1 for right, -1 for left
+
+    function autoSlide() {
+        if (scrollDirection === 1 && galleryContainer.scrollLeft >= (galleryContainer.scrollWidth - galleryContainer.clientWidth)) {
+            scrollDirection = -1; // Change direction to left
+        } else if (scrollDirection === -1 && galleryContainer.scrollLeft <= 0) {
+            scrollDirection = 1; // Change direction to right
+        }
+        
+        galleryContainer.scrollLeft += scrollStep * scrollDirection;
+    }
+
+    setInterval(autoSlide, scrollSpeed);
+    document.querySelectorAll('.blog-images').forEach(container => {
+    let images = container.querySelectorAll('img');
+    let index = 0;
+
+    setInterval(() => {
+        images[index].style.display = "none";
+        index = (index + 1) % images.length;
+        images[index].style.display = "block";
+    }, 5000); // Change image every 3 seconds
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".contact-btn").addEventListener("click", function() {
+        window.location.href = "Reach us.html";
+    });
+});
+
+
+</script>
+</script>
+    </script>
+</body>
+</html>
+
+
+

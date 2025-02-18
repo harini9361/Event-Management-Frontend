@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Order</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #d9534f;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        h3 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+            color: #555;
+        }
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-control button {
+            border: none;
+            background: #d9534f;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 3px;
+            margin: 0 5px;
+        }
+        .remove {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+        }
+        .bill p {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+        }
+        .total {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .coupon-success {
+            background: #dff0d8;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .pay-now, .back-to-cart {
+            width: 100%;
+            background: #d9534f;
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .pay-now:hover, .back-to-cart:hover {
+            background: #c9302c;
+        }
+
+
+        .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+}
+.popup-content {
+    font-size: 18px;
+}
+.popup button {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.order-btn {
+    display: block;
+    width: 100%;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.order-btn:hover {
+    background-color: darkred;
+}
+
+   
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Shopping Cart > <span class="highlight">Review Order</span></h2>
+
+        <div class="section">
+            <h3>Address</h3>
+            <p><strong>harini</strong>, 9361280262</p>
+            <p>5/85M manjunagar, kovilpatti, Tamil Nadu - 658012</p>
+        </div>
+        
+        <div class="section">
+            <h3>Payment</h3>
+            <p>Select Payment Type</p>
+            <label class="payment-option">
+                <input type="radio" checked> Cash On Delivery (Pay now <strong>₹5150</strong>)
+            </label>
+            <p>Remaining ₹46350.00 will be collected at the time of delivery</p>
+        </div>
+        
+        <div class="section cart">
+            <h3>Item (1)</h3>
+            <div class="cart-item">
+                <img src="wedding6.jpg" alt="Wedding Stage Decor">
+                <div>
+                    <p>Wedding Stage Decor 19</p>
+                    <p><strong>₹55,000</strong></p>
+                </div>
+                <div class="quantity-control">
+                    <button class="minus">-</button>
+                    <span class="quantity">1</span>
+                    <button class="plus">+</button>
+                </div>
+                <button class="remove">Remove</button>
+            </div>
+        </div>
+
+       
+        
+        <div class="section bill">
+            <h3>Bill Details</h3>
+            <p>Sub Total: <span>₹55,000</span></p>
+            <p>Tax: <span>₹0</span></p>
+            <p>Coupon Discount: <span>- ₹3,500</span></p>
+            <p class="total">Payable: <span>₹51,500</span></p>
+            <div class="coupon-success">✅ <strong>₹13,500</strong> saved so far on this order</div>
+            <p class="thanks">Thanks for booking our services! We will provide the best services in Patna, Bihar.</p>
+        </div>
+
+        <div id="orderPopup" class="popup">
+            <div class="popup-content">
+                <p>🚚 Your order is on the way! 🎉</p>
+                <button onclick="confirmOrder()">OK</button>
+            </div>
+        </div>
+        <button id="orderButton" class="order-btn">Order Now</button>
+
+        <button class="back-to-cart" onclick="location.href='cart.html'">Back to Cart</button>
+    </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const minusButton = document.querySelector(".minus");
+            const plusButton = document.querySelector(".plus");
+            const quantitySpan = document.querySelector(".quantity");
+            const removeButton = document.querySelector(".remove");
+            let quantity = 1;
+
+            minusButton.addEventListener("click", function () {
+                if (quantity > 1) {
+                    quantity--;
+                    quantitySpan.textContent = quantity;
+                }
+            });
+
+            plusButton.addEventListener("click", function () {
+                quantity++;
+                quantitySpan.textContent = quantity;
+            });
+
+            removeButton.addEventListener("click", function () {
+                document.querySelector(".cart-item").remove();
+            });
+        });
+
+
+    // Function to show the order confirmation popup
+function showPopup() {
+    document.getElementById("orderPopup").style.display = "flex"; // Show the popup
+}
+
+// Function to hide popup and redirect to success page
+function confirmOrder() {
+    document.getElementById("orderPopup").style.display = "none"; // Hide popup
+    window.location.href = "order_success.html"; // Redirect to success page
+}
+
+// Event listener for the "Order Now" button
+document.getElementById("orderButton").addEventListener("click", showPopup);
+
+
+</script>
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reach Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff5f2;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 16px;
+            color: gray;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        .contact-info, .contact-form {
+            width: 40%;
+            background: #f8b7a1;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .info-box i {
+            font-size: 22px;
+            margin-right: 10px;
+        }
+
+        /* Form */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form input, .contact-form select, .contact-form button {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .contact-form button {
+            background: #ff5733;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* Floating Call Button */
+        .floating-call {
+            position: fixed;
+            left: 10px;
+            bottom: 80px;
+            background: #131213;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .floating-call i {
+            font-size: 24px;
+            color: white;
+        }
+
+        .call-popup {
+            display: none;
+            position: absolute;
+            left: 60px;
+            top: 0;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Hover Effect for Call Button */
+        .floating-call:hover .call-popup {
+            display: block;
+        }
+
+        /* Enquiry Form */
+        .enquiry-form {
+            position: fixed;
+            right: 0;
+            top: 50%;
+            background: rgb(234, 156, 234);
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            transform: rotate(-90deg);
+        }
+
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: #151515;
+            padding: 15px;
+            border-radius: 50%;
+        }
+
+        .home-button i {
+            font-size: 22px;
+            color: white;
+        }
+
+
+        .custom-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+}
+
+.custom-select:focus {
+    outline: none;
+    border-color: #eda4f4;
+    box-shadow: 0px 0px 5px rgba(255, 140, 140, 0.5);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: medium;
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+.contact-banner {
+    position: relative;
+    width: 100%;
+}
+
+.contact-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.contact-text {
+    position: absolute;
+    bottom: 15%;  /* Moves text a bit lower */
+    right: 5%;  /* Moves text to the right */
+    color: #090909; /* Soft pinkish color */
+    font-size: 2.5rem; /* Medium-large text */
+    font-weight: bold;
+    text-align: right;
+    font-family: 'Playfair Display', serif; /* Elegant Serif Font */
+    letter-spacing: 1px; /* Adds spacing for elegance */
+}
+
+
+/*footer*/
+.footer {
+    background-color: #f8f8f8;
+    padding: 40px 20px;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-section {
+    flex: 1;
+    padding: 15px;
+}
+
+.footer-section h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.footer-section p {
+    color: #666;
+    font-size: 14px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #666;
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #d15b5b;
+}
+
+.social-icons {
+    margin-top: 10px;
+}
+
+.social-icons a {
+    font-size: 18px;
+    color: #666;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    color: #d15b5b;
+}
+
+.footer-bottom {
+    background-color: #f7b0b0;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.footer-bottom a {
+    color: #333;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+#map iframe {
+    width: 100%;
+    border-radius: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="contact-banner">
+        <img src="flower1.jpg" alt="Contact Us Banner">
+        <div class="contact-text">
+            <h1>Reach us </h1>
+        </div>
+    </div>
+    
+    <header>
+        <h1>CONTACT DETAILS</h1>
+        <p>We will be glad to become a part of your unique wedding</p>
+    </header>
+
+    <section class="contact-container">
+        <div class="contact-info">
+            <div class="info-box">
+                <i class="fas fa-envelope"></i>
+                <span>HMHevents@gmail.com</span>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-phone"></i>
+                <span>+91-9810700800, +91-991300002</span>
+            </div>
+            <div class="info-box">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>DLF PHASE - 2 L-25/9, Near Privat Hospital, Gurugram, Haryana 122002</span>
+            </div>
+        </div>
+
+        <div class="contact-form">
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <input type="tel" placeholder="Phone No" required>
+                <select>
+                    <option>Wedding</option>
+                    <option>Corporate Event</option>
+                    <option>Birthday</option>
+                </select>
+                <input type="date" required>
+                <input type="text" placeholder="Event Venue" required>
+                <div class="form-group">
+                    <label for="hear-about">How did you hear about us?*</label>
+                    <select id="hear-about" name="hear-about" class="custom-select">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="A friend">A friend</option>
+                        <option value="While surfing the net">While surfing the net</option>
+                    </select>
+                
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </section>
+    <div class="floating-call">
+        <i class="fas fa-phone"></i>
+        <div class="call-popup">+91 9911300002</div>
+    </div>
+
+    <div class="enquiry-form">
+        <span>Enquiry Form</span>
+    </div>
+
+    <a href="index.html" class="home-button">
+        <i class="fas fa-home"></i>
+    </a>
+
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about">
+                <h2>HMH EVENTS & WEDDINGS</h2>
+                <p>We are passionate about creating charmingly timeless and elegant luxurious weddings and events.</p>
+            </div>
+    
+            <div class="footer-section links">
+                <h2>LINKS</h2>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="careers.html">Career With Us</a></li>
+                    <li><a href="Reach us.html">Reach Us</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-section contact">
+                <h2>CONTACT US</h2>
+                <p>DLF PHASE - 2 L-25/9</p>
+                <p>Near Privat Hospital Gurugram, Haryana 122002</p>
+                <p>Email: <a href="mailto:info@v3events.in">info@HMHevents.in</a></p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+    
+            <div class="footer-section map">
+                <h2>MAP LOCATION</h2>
+                <div id="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d700.8446903230736!2d77.09226620389245!3d28.46283079103588!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1be3c05a9f71%3A0x7f3c6881bb3c9a5f!2sV3%20Events!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+                    width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    
+        <div class="footer-bottom">
+            <p>Copyright© V3 EVENTS & ENTERTAINMENTS PVT.LTD 2025, All rights reserved. | <a href="privacy.html">Privacy Policy</a> | Designed & Developed by Digital 360</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const floatingCall = document.querySelector(".floating-call");
+            floatingCall.addEventListener("mouseover", function () {
+                document.querySelector(".call-popup").style.display = "block";
+            });
+            floatingCall.addEventListener("mouseleave", function () {
+                document.querySelector(".call-popup").style.display = "none";
+            });
+        });
+        
+        document.addEventListener("DOMContentLoaded", function () {
+    let selectElement = document.getElementById("hear-about");
+
+    selectElement.addEventListener("change", function () {
+        console.log("User selected:", this.value);
+    });
+});
+// This script is optional if you want to add any dynamic functionality
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Footer loaded successfully!");
+});
+    </script>
+</body>
+</html>
+

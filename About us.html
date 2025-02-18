@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - V3 Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        .header {
+            background: #c294e1;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* About Section */
+        .about-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .about-text {
+            width: 55%;
+            padding-right: 20px;
+        }
+
+        .about-text h1 {
+            font-size: 28px;
+            color: #141414;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .about-btn {
+            display: inline-block;
+            background-color: #F8A5C2;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .about-btn:hover {
+            background-color: #d96d90;
+        }
+
+        
+        /* Dots for Slider */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbbbbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .active {
+            background-color: #c692e9;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            background: #cd9aef;
+            color: white;
+            padding: 10px;
+            margin-top: 40px;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 900px) {
+            .about-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-text {
+                width: 100%;
+                padding: 0;
+            }
+
+            .slider-container {
+                width: 100%;
+            }
+        }
+        a {
+    text-decoration: none; /* Removes underline */
+}
+/* Main Slider Container */
+.slider-container {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+/* Large Image Display */
+.main-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Thumbnail Image Strip */
+.thumbnail-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    transition: border 0.3s;
+}
+
+.thumbnail:hover,
+.thumbnail.active {
+    border: 2px solid #c692e9;
+}
+
+
+/* Make the banner bigger */
+.about-banner {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Increase height */
+    overflow: hidden;
+}
+
+.about-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers full area */
+}
+
+/* Stylish "About Us" Text */
+.about-banner h1 {
+    position: absolute;
+    bottom: 40px; /* Move text down */
+    right: 50px; /* Move text to right */
+    color: rgb(248, 247, 247);
+    font-size: 40px; /* Make text bigger */
+    font-family: 'Dancing Script', cursive; /* Stylish font */
+    text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+}
+
+
+
+.what-we-do {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #f8f8f8;
+}
+
+.what-we-do h2 {
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.service {
+    background: white;
+    padding: 20px;
+    width: 30%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.service img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.service h3 {
+    font-size: 24px;
+    color: #e91e63;
+    margin: 15px 0;
+}
+
+.service p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.service button {
+    background-color: #e91e63;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.service img {
+    width: 100%;  /* Makes the image fit the container width */
+    height: 200px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image scales properly without distortion */
+    border-radius: 10px; /* Keeps the rounded corners */
+}
+
+    </style>
+</head>
+<body>
+
+<!-- About Us Banner -->
+<div class="about-banner">
+    <img src="front2.jpg" alt="About Us">
+    <h1>About Us</h1>
+</div>
+
+    <!-- About Section -->
+    <div class="about-container">
+        <div class="about-text">
+            <h1>HMH Events & Entertainments Pvt. Ltd</h1>
+            <p>HMH Events & Entertainments Pvt. Ltd is a Delhi & Mumbai based event management & wedding planning company dedicated to providing customers with a wide assortment of event management services for all sorts of corporate and personal events.</p>
+            <p>We have over <b>20 years</b> of experience in the industry, ensuring top-notch services with creativity and innovation. From weddings to corporate events, we make your dreams come to life.</p>
+            <a href="index.html" class="about-btn">Back to Home</a>
+        </div>
+
+        <div class="slider-container">
+            <!-- Large Main Image -->
+            <div class="main-image">
+                <img id="currentImage" src="About img_files/4.JPG" alt="Main Event Image">
+            </div>
+            <!-- Thumbnail Images -->
+            <div class="thumbnail-container">
+                <img class="thumbnail" src="About img_files/1.JPG" onclick="changeImage(0)">
+                <img class="thumbnail" src="About img_files/7.JPG" onclick="changeImage(1)">
+                <img class="thumbnail" src="About img_files/about4.jpg" onclick="changeImage(2)">
+                <img class="thumbnail" src="About img_files/about6.jpg" onclick="changeImage(3)">
+                <img class="thumbnail" src="About img_files/about2.jpg" onclick="changeImage(4)">
+            </div>
+        </div>
+     
+    </div>
+    <section class="what-we-do">
+        <h2>WHAT WE DO</h2>
+        <div class="services">
+            <div class="service">
+                <img src="About img_files/what3.jpg" alt="Luxury Weddings">
+                <h3>Luxury Weddings</h3>
+                <p>V3Events & Wedding is one of the most preferred choices as luxury wedding planners...</p>
+                <button>Read More</button>
+            </div>
+            <div class="service">
+                <img src="About img_files/what1.jpg" alt="Wedding Organizers">
+                <h3>Wedding Organizers</h3>
+                <p>As a prominent Wedding Organizer in Delhi, we think outside the box at V3 Events...</p>
+                <button>Read More</button>
+            </div>
+            <div class="service">
+                <img src="About img_files/what2.jpg" alt="Wedding Decorators">
+                <h3>Wedding Decorators</h3>
+                <p>V3Events & Wedding is one of the most preferred choices for wedding decoration...</p>
+                <button>Read More</button>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <div class="footer">
+        Copyright © 2025 V3 Events & Weddings. All Rights Reserved.
+    </div>
+
+    <!-- JavaScript for Slider -->
+    <script>
+        let images = ["About img_files/4.JPG", "About img_files/1.JPG","About img_files/7.JPG", "About img_files/about4.jpg", "About img_files/about6.jpg","About img_files/about2.jpg"];
+let currentIndex = 0;
+const mainImage = document.getElementById("currentImage");
+const thumbnails = document.querySelectorAll(".thumbnail");
+
+function changeImage(index) {
+    currentIndex = index;
+    mainImage.style.opacity = 0;
+    setTimeout(() => {
+        mainImage.src = images[index];
+        mainImage.style.opacity = 1;
+    }, 300);
+
+    // Highlight Active Thumbnail
+    thumbnails.forEach(thumb => thumb.classList.remove("active"));
+    thumbnails[index].classList.add("active");
+}
+
+// Auto-Slide Every 3 Seconds
+setInterval(() => {
+    currentIndex = (currentIndex + 1) % images.length;
+    changeImage(currentIndex);
+}, 3000);
+    </script>
+
+</body>
+</html>

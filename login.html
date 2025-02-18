@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="login-bg">
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        <p>Or login with:</p>
+        <div class="social-icons">
+            <div id="googleLogin" class="social-btn">
+                <img src="google.jpg" alt="Google">
+            </div>
+            <div id="facebookLogin" class="social-btn">
+                <img src="facebook.jpg" alt="Facebook">
+            </div>
+            <div id="instagramLogin" class="social-btn">
+                <img src="insta.jpg" alt="Instagram">
+            </div>
+        </div>
+
+        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        <a href="index.html">Back to Home</a>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>
+

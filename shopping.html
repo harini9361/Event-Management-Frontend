@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Decor Shopping</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        nav {
+            background: #ef9292;
+            color: rgb(22, 21, 21);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .icons img {
+            width: 30px;
+            margin-left: 15px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Product Section */
+        .decor-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .product-card {
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .product-card h3 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #fefcfc;
+        }
+
+        .product-card .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #E91E63;
+        }
+
+        .product-card button {
+            background: #E91E63;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .product-card button:hover {
+            background: #D81B60;
+        }
+
+        .shop-link {
+    text-decoration: none; /* Removes underline */
+    font-size: 18px;
+    color: white; /* Change color as needed */
+    padding: 10px 20px;
+    background-color: #E91E63; /* Button style */
+    border-radius: 5px;
+}
+
+.shop-link:hover {
+    background-color: #D81B60; /* Hover effect */
+}
+
+.shop-link {
+    text-decoration: none; /* Removes underline */
+    font-size: 18px; /* Medium font size */
+    color: white !important; /* Forces white color */
+    font-weight: 500; /* Medium font weight */
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Event Decor</div>
+        <div class="icons">
+            <a href="signup.html"><img src="About img_files/user shop.png" alt="User"></a>
+            <a href="cart.html"><img src="cart icon.jpg" alt="Cart"></a>
+           
+        </div>
+    </nav>
+    <nav>
+        <a href="index.html" class="home-link">Home</a>
+    </nav>
+    
+    <style>
+        .home-link {
+            text-decoration: none; /* Removes underline */
+            font-size: 20px;
+            color: rgb(15, 15, 15)px;
+            background-color: #ffffff; /* Green background */
+            border-radius: 5px;
+        }
+    
+        .home-link:hover {
+            background-color: #f8d0f0; /* Darker green on hover */
+        }
+    </style>
+    <!-- Wedding Decors -->
+    <section class="decor-category">
+        <h2>Wedding Decors</h2>
+        <div class="decor-container" id="wedding-decor"></div>  
+              
+    </section>
+
+    <!-- Birthday Decors -->
+    <section class="decor-category">
+        <h2>Birthday Decors</h2>
+        <div class="decor-container" id="birthday-decor"></div>
+    </section>
+
+    <!-- Engagement Decors -->
+    <section class="decor-category">
+        <h2>Engagement Decors</h2>
+        <div class="decor-container" id="engagement-decor"></div>
+    </section>
+
+    <!-- Haldi Decors -->
+    <section class="decor-category">
+        <h2>Haldi Decors</h2>
+        <div class="decor-container" id="haldi-decor"></div>
+    </section>
+
+    <!-- Mehendi Decors -->
+    <section class="decor-category">
+        <h2>Mehendi Decors</h2>
+        <div class="decor-container" id="mehendi-decor"></div>
+    </section>
+
+    <script>
+        // Sample Product Data
+        const products = {
+            "wedding-decor": [
+                { name: "Wedding Stage 1", price: "₹45,000", image: "shopping images/wedding1.jpg" },
+                { name: "Wedding Stage 2", price: "₹35,500", image: "shopping images/wedding3.jpg" },
+                { name: "Wedding Stage 3", price: "₹45,500", image: "shopping images/wedding2.jpg" },
+                { name: "Wedding Stage 4", price: "₹20,500", image: "wedding5.jpg" },
+                { name: "Wedding Stage 5", price: "₹25,000", image: "wedding6.jpg" }
+            ],
+            "birthday-decor": [
+                { name: "Birthday Theme 1", price: "₹10,000", image: "shopping images/bday4.jpg" },
+                { name: "Birthday Theme 2", price: "₹15,000", image: "shopping images/birthday2.jpg" },
+                { name: "Birthday Theme 3", price: "₹12,500", image: "shopping images/bday5.jpg" },
+                { name: "Birthday Theme 4", price: "₹20,000", image: "shopping images/birthday1.jpg" },
+                { name: "Birthday Theme 5", price: "₹18,500", image: "shopping images/bday6.jpg" }
+            ],
+            "engagement-decor": [
+                { name: "Engagement Stage 1", price: "₹30,000", image: "shopping images/engagement1.jpg" },
+                { name: "Engagement Stage 2", price: "₹32,500", image: "shopping images/engagement3.jpg" },
+                { name: "Engagement Stage 3", price: "₹28,000", image: "shopping images/engagement4.jpg" },
+                { name: "Engagement Stage 4", price: "₹35,000", image: "wedding4.jpg" },
+                { name: "Engagement Stage 5", price: "₹40,000", image: "wedding3.jpg" }
+            ],
+            "haldi-decor": [
+                { name: "Haldi Setup 1", price: "₹15,000", image: "shopping images/haldi7.jpg" },
+                { name: "Haldi Setup 2", price: "₹18,000", image: "shopping images/haldi5.jpg" },
+                { name: "Haldi Setup 3", price: "₹22,000", image: "shopping images/haldi6.jpg" },
+                { name: "Haldi Setup 4", price: "₹25,500", image: "shopping images/haldi.jpg" },
+                { name: "Haldi Setup 5", price: "₹30,000", image: "shopping images/haldi2.jpg" }
+            ],
+            "mehendi-decor": [
+                { name: "Mehendi Decor 1", price: "₹12,000", image: "shopping images/mehandi1.jpg" },
+                { name: "Mehendi Decor 2", price: "₹14,500", image: "shopping images/mehandi2.jpg" },
+                { name: "Mehendi Decor 3", price: "₹17,000", image: "shopping images/mehandi4.jpg" },
+                { name: "Mehendi Decor 4", price: "₹20,000", image: "shopping images/mehandi5.jpg" },
+                { name: "Mehendi Decor 5", price: "₹22,500", image: "shopping images/mehandi6.jpg" }
+            ]
+        };
+
+        // Function to Load Products
+        function loadProducts() {
+            Object.keys(products).forEach(category => {
+                const container = document.getElementById(category);
+                products[category].forEach(product => {
+                    container.innerHTML += `
+                        <div class="product-card">
+                            <img src="${product.image}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                            <p class="price">${product.price}</p>
+                            <button>Add to Cart</button>
+                        </div>
+                    `;
+                });
+            });
+        }
+
+        // Load Products on Page Load
+        window.onload = loadProducts;
+
+
+
+        
+// Function to add product to cart
+function addToCart(productId, productName, productPrice, productImage) {
+    // Get existing cart items from localStorage or initialize an empty array
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    // Check if the product already exists in the cart
+    let existingProduct = cart.find(item => item.id === productId);
+    if (existingProduct) {
+        existingProduct.quantity += 1; // Increase quantity if it exists
+    } else {
+        // Add new product
+        cart.push({
+            id: productId,
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: 1
+        });
+    }
+
+    // Save back to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(`${productName} added to cart!`);
+}
+
+// Attach event listener to all "Add to Cart" buttons
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".add-to-cart").forEach(button => {
+        button.addEventListener("click", function() {
+            let productId = this.getAttribute("data-id");
+            let productName = this.getAttribute("data-name");
+            let productPrice = this.getAttribute("data-price");
+            let productImage = this.getAttribute("data-image");
+
+            addToCart(productId, productName, productPrice, productImage);
+        });
+    });
+});
+
+
+function addToCart(name, price, image) {
+    let cartItem = { name: name, price: price, image: image };
+    localStorage.setItem("cartItem", JSON.stringify(cartItem)); // Save item
+    window.location.href = "cart.html"; // Redirect to cart page
+}
+    
+    </script>
+
+</body>
+</html>
